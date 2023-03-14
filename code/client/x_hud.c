@@ -237,7 +237,6 @@ qboolean X_Hud_UpdatePlayerStats()
 		if (current >= xmod.scr.lastUpd)
 		{
 			CL_AddReliableCommand("score", qfalse);
-			CL_AddReliableCommand("statsall", qfalse);
 			xmod.scr.lastUpd = Sys_Milliseconds() + XSCORE_UPDATE_INTERVAL;
 		}
 
