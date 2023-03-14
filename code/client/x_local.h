@@ -623,6 +623,7 @@ void X_Hud_DrawProgressBarInCenter(XUIProgressBar *bar, float value);
 /*********************************
  *  x_misc.c
  *********************************/
+qboolean X_Misc_GetGameTime(qtime_t *time);
 void X_Misc_MakeStringSymbolic(char *str);
 
 void X_Misc_InitCustomColor(cvar_t *cvar, XCustomColor *color);

@@ -28,6 +28,40 @@ char decrypt_table[] = {
 103, 58, 90, 107, 52, 64, 82, 78, 61, 88, 91, 73, 35, 115, 69, 120
 };
 
+qboolean X_Misc_GetGameTime(qtime_t *time)
+{
+	if (!time) return qfalse;
+
+	if (xmod.gs.timer.start < 0)
+	{
+		return qfalse;
+	}
+
+	if (!xmod.gs.timer.current || xmod.gs.timer.current < 0)
+	{
+		return qfalse;
+	}
+
+	int timer = (xmod.gs.timer.current - xmod.gs.timer.start) / 1000;
+	if (timer < 0)
+	{
+		timer *= -1;
+	}
+
+	memset(time, 0, sizeof(*time));
+
+	time->tm_min = timer / 60;
+	time->tm_sec = timer % 60;
+
+	if (time->tm_min>= 60)
+	{
+		time->tm_hour = time->tm_min / 60;
+		time->tm_min = time->tm_min % 60;
+	}
+
+	return qtrue;
+}
+
 void X_Misc_MakeStringSymbolic(char *str)
 {
 	int length = strlen(str);

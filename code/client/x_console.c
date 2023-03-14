@@ -186,7 +186,10 @@ qboolean X_Con_OnChatMessage(const char *text, int client)
 	// Make time tag
 
 	qtime_t time;
-	Com_RealTime(&time);
+	if (X_Misc_GetGameTime(&time) == qfalse)
+	{
+		Com_RealTime(&time);
+	}
 
 	char timestr[64];
 	Com_sprintf(timestr, sizeof(timestr), "%02d:%02d:%02d", time.tm_hour, time.tm_min, time.tm_sec);
